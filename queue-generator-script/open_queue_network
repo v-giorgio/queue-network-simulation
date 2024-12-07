@@ -1,0 +1,30 @@
+// Rede aberta de filas
+digraph {
+	nodesep=1 rankdir=LR ranksep=1.5 splines=true
+	Chegada [label="λ = 2 jobs/s" color=blue shape=ellipse]
+	"Saída" [color=red shape=doublecircle]
+	subgraph cluster_S1 {
+		color=lightgrey style=filled
+		S1 [label=S1 shape=box]
+		F1_1 [label="Fila 1" shape=circle]
+		F1_1 -> S1
+	}
+	subgraph cluster_S2 {
+		color=lightblue style=filled
+		S2 [label=S2 shape=box]
+		F2_1 [label="Fila 2" shape=circle]
+		F2_1 -> S2
+	}
+	subgraph cluster_S3 {
+		color=lightgreen style=filled
+		S3 [label=S3 shape=box]
+		F3_1 [label="Fila 3" shape=circle]
+		F3_1 -> S3
+	}
+	Chegada -> F1_1
+	S1 -> F2_1 [label="p=0.5"]
+	S1 -> F3_1 [label="p=0.5"]
+	S2 -> "Saída" [label="p=0.8"]
+	S3 -> "Saída"
+	S2 -> F2_1 [label="p=0.2"]
+}
